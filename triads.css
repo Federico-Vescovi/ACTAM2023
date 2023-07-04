@@ -1,0 +1,687 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html{
+  scroll-behavior: smooth;
+}
+h1{
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding: 10px;
+}
+
+.horizontal-list{
+  display: inline;
+}
+ul{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+li {
+  margin: 5px;
+  display: table-row;
+  list-style: none;
+}
+
+li * {
+  display: table-cell;
+  padding: 0.5em;
+}
+.containerNoteGenerator{
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+}
+
+#containerModeButtons{
+  display: flex;
+  justify-content: center;
+}
+
+.containerCheckbox1{
+  margin-top: 450px;
+  border: 1px solid black;
+  height: 250px;
+  width: 400px;
+  position: absolute;
+  border-radius: 5px;
+  padding-top: 5px;
+}
+
+#containerCheckbox2{
+  margin-top: 450px;
+  margin-left: 480px;
+  border: 1px solid black;
+  height: 250px;
+  width: 400px;
+  position: absolute;
+  border-radius: 5px;
+  padding-top: 5px;
+}
+
+#containerCheckbox3{
+  margin-top: 450px;
+  margin-left: 1000px;
+  border: 1px solid black;
+  height: 250px;
+  width: 400px;
+  position: absolute;
+  border-radius: 5px;
+  padding-top: 5px;
+}
+
+
+
+
+
+
+
+/*GUITAR*/
+
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
+
+:root {
+    --fretboard-height: 300;
+    --number-of-strings: 6;
+    --string-height: 10;
+    --half-string-height: calc(var(--string-height) / 2);
+    --string-top-position: calc(var(--fretboard-height) / var(--number-of-strings) / 2 - var(--half-string-height));
+    --double-fretmark-position-1: calc(var(--fretboard-height) * 0.34);
+    --double-fretmark-position-2: calc(var(--fretboard-height) * 0.66);
+}
+
+
+.fretboard {
+    display: flex;
+    flex-direction: column;
+    background: #686768;
+    width: 100%;
+    min-width: 1500px;
+    height: calc(var(--fretboard-height) * 1px);
+    margin-top: 50px;
+    transition: transform 0.5s ease;
+    transform: translateY(100%);
+}
+.fretboard-hidden {
+  transform: translateY(100%);
+}
+.fretboard-visible {
+  transform: translateY(0);
+}
+.string {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+.string:before {
+    content: '';
+    width: 100%;
+    height: calc(var(--string-height) * 1px);
+    background: linear-gradient(#eee, #999);
+    box-shadow: 76px 3px 10px #686768;
+    z-index: 1;
+    position: absolute;
+    top: 22px;
+    top: calc(var(--string-top-position) * 1px);
+}
+.note-fret {
+    display: flex;
+    flex: 1;
+    border-right: 10px solid;
+    border-image: linear-gradient(to left, #777, #bbb, #777) 1 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.note-fret:first-child {
+    background: #161717;
+    min-width: 76px;
+    border-right: 12px solid;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+}
+
+.single-fretmark:after, .double-fretmark:before, .double-fretmark:after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #aaa;
+}
+
+.single-fretmark:after {
+    top: calc(var(--fretboard-height) / 2 * 1px);
+    transform: translate(0, -50%);
+}
+
+.double-fretmark:before {
+    top: calc(var(--double-fretmark-position-1) * 1px);
+    transform: translate(-65%, -50%);
+}
+.double-fretmark:after {
+    top: calc(var(--double-fretmark-position-2) * 1px);
+    transform: translate(-65%, -50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*MODE BUTTONSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
+.modeButtons{
+  text-decoration:none;
+  padding: 20px 50px;
+  font-size:large;
+  position: relative;
+  margin: 20px 20px;
+  cursor: pointer;
+}
+
+
+#btnPracticeMode{
+  color:white;
+  border-radius: 30px;
+  transition: transform 0.3s ease;
+}
+
+#btnPracticeMode::after, #btnPracticeMode::before{
+  content: "";
+  position: absolute;
+  opacity: 0.3;
+  background: #52086E;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+#btnPracticeMode:hover{
+  transform: translate(-12px, -12px);
+}
+
+#btnPracticeMode:hover::after{
+  transform: translate(6px, 6px);
+}
+
+#btnPracticeMode:hover::before{
+  transform: translate(12px, 12px);
+  
+}
+
+#btnPlayAlongMode{
+  color:white;
+  border-radius: 30px;
+  transition: transform 0.3s ease;
+}
+
+#btnPlayAlongMode::after, #btnPlayAlongMode::before{
+  content: "";
+  position: absolute;
+  opacity: 0.3;
+  background: #52086E;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+#btnPlayAlongMode:hover{
+  transform: translate(12px, -12px);
+}
+
+#btnPlayAlongMode:hover::after{
+  transform: translate(-6px, 6px);
+
+}
+
+#btnPlayAlongMode:hover::before{
+  transform: translate(-12px, 12px);
+  
+}
+
+
+/*BUTTONS WITH ICON*/
+
+.btnIcon{
+  position: relative;
+  top:10vh;
+  left:1vw;
+  width:3vw;
+  height:3vw;
+  display: inline-block;
+  cursor: pointer;
+
+}
+
+#metronome2{
+  position: absolute;
+  left:0px;
+  visibility:hidden;
+}
+
+#audioIcon2{
+  position: absolute;
+  left:0px;
+  visibility:hidden;
+}
+
+
+
+
+/*BEGINNING OF BULLET POINT*/
+/*
+#containerBulletPoint{
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 140px;
+}
+
+.bulletPointTitle{
+  display: flex;
+  font-size: 25px;
+  margin-bottom: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #C289FA;
+}
+
+.bulletPointDescription{
+  margin-left: 50px;
+  font-size: 17px;
+}
+
+.bulletPointChoiches{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10px;
+}
+
+input[type="radio"], .bulletPointDescription{
+  display: inline;
+}
+
+input[type="radio"]{
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="radio"]::before{
+  display: inline;
+  content: "";
+  width: 26px;
+  height: 26px;
+  background-color: black;
+  position: absolute;
+  top: calc(50% - 13px);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="radio"]::after{
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: wheat;
+  position: absolute;
+  top: calc(50% - 8px);
+  border-radius: 50%;
+  cursor: pointer;
+  left: 5px;
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
+  
+}
+
+input[type="radio"]:checked::after{
+  transform: scale(1);
+}
+*/
+/*END OF BULLET POINT*/
+
+
+
+
+
+
+
+
+
+
+
+/*BEGINNING OF CHECKBOXES*/
+
+/* Style the label containing the input element */
+
+
+
+
+
+
+.containerCheckboxOption {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  margin-left: 20px;
+  height: 20px;
+  /*width: calc((100% - 60px) / 3);*/
+  width: 60px;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+
+
+
+/* Hide the browser's default checkbox */
+.containerCheckboxOption input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  
+}
+
+
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 5px;
+  margin-left: 24px;
+  margin-bottom: 150px;
+  height: 20px;
+  width: 20px;
+  background-color: #EAF0F6;
+  border: 2px solid #33475B;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+/* When the checkbox is checked, add a navy background */
+.containerCheckboxOption input:checked ~ .checkmark {
+  background-color: #33475B;
+}
+
+.containerCheckboxOption input:checked ~ .checkmark2 {
+  background-color: #33475B;
+}
+
+
+
+/* Create the checkmark (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+/* Show the checkmark when checked */
+.containerCheckboxOption  input:checked ~ .checkmark:after {
+  display: block;
+}
+
+
+/* Style the checkmark */
+.containerCheckboxOption  .checkmark:after {
+  left: 4px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  
+}
+
+/*text, colors and generic shapessssssssssssssssssssssssssssssssss*/
+.txt{
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; 
+  padding: 20px 0;
+  font-family:'Tahoma', sans-serif;
+  text-align: center;
+  color:black;
+}
+.lefttxt{
+  font-size: 30px; 
+  padding: 5px 0;
+  padding-left: 7px;
+  font-family:'Tahoma', sans-serif;
+  color:#FEFAFE;
+  text-align: left;
+  font-weight: 200;
+}
+
+#triadGeneratorRectangle{
+  position:absolute;
+  top: 58vh;
+  height: 11vh;
+  margin: 70px;
+  width: 30%;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.square{
+  position:relative;
+  left:600px;
+  top: 40px;
+  height: 5vw;
+  width: 5vw;
+  border: solid rgba(0, 0, 0, 0.315) 5px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.container-guitar{
+  top: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.red{
+  background-color: #e60a0a;
+}
+
+.inline{
+  display: inline-block;
+}
+
+.yellow{
+  background-color: #f1e61a;
+}
+
+.green{
+  background-color: #0ae62f;
+}
+
+.darkpurple{
+  background-color: #440d97;
+}
+
+.purple{
+  background-color: #f6ecfc;
+}/*bianco violettato: #FEFAFE*/ 
+
+.lightblue{
+  background-color: #3696b6;
+}
+
+.darkpurpletext{
+  color:#6E29D6;
+}
+.purpletext{
+  color:#FEFAFE;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SLIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER*/
+.containerSlider{
+  position: relative;
+  top:8vh;
+  left:10vw;
+  width:80%;
+} 
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  left:5vw;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none; /* Remove outline */
+  opacity: 0.75;
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1; /* Fullly visible when the mouse is over the slider */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #440d97;
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px;
+  border-radius: 50%;
+  background: #440d97;
+  cursor: pointer; /* Cursor on hover */
+}
+
+
+/*
+.rounded{
+  position: relative;
+  display: flex;
+  height: 20vw;
+  width: 20vw;
+  border-radius: 50%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+.dashed{
+  background:linear-gradient(to left top ,#EBD0FA, #FEFAFE);
+}*/
