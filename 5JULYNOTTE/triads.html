@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="triads.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+</head>
+
+
+<body>    
+    <!--TODO da chidere a PIO, possiamo mettere i font dentro a "txt"?? btn-1 non dovrebbe essere ID? e quindi con # in CSS-->
+    <div class= "darkpurple lefttxt" style="font-size: 35px;">Triad Generator</div>
+    <div id="containerModeButtons" class="purple">
+        <div class="modeButtons darkpurple " id="btnPlayAlongMode" style="font-size: 20px; font-family:'Tahoma', sans-serif;" onclick=playAlongMode()> Play along mode</div>
+        <div class="modeButtons darkpurple " id="btnPracticeMode" style="font-size: 20px; font-family:'Tahoma', sans-serif;" onclick=practiceMode()> Practice mode</div>
+    </div>
+    <div class="containerNoteGenerator purple">
+        <!--<div class="rounded dashed">-->
+            <p id="displaytriad" class="txt" style="top:80px; position:absolute; font-size: 140px;">C Maj</p>
+            <p id="displaystring" class="txt" style="top:280px; position:absolute; font-size: 140px;">3rd String</p>
+        <!--</div>-->
+        <div class="txt darkpurple purpletext" id="triadGeneratorRectangle" style="padding-top: 30px;" onclick=pauseAutoPlay()>START!</div>
+        <div class="txt darkpurple purpletext" id="triadGeneratorRectangle2" style="padding-top: 30px;" onclick=displayNewTriad()>generate a random triad!</div>
+    </div>
+    
+    <div class="containerSlider">
+        <input type="range" min="20" max="300" value="120" class="slider" id="myRange" oninput=refreshSliderBox()>
+    </div>
+    <div class="bpmBoxContainer" style="position:relative; left:32px; top:5vh; width:8vw">
+        <span id="bpmNumber" class="txt" style="position:relative; left:3px; top:-2px; font-weight:bold;">BPM: 120</span>
+    </div>
+    <button class="btnIcon" id="metronomeIcon" onclick=muteMetronome()>
+        <img id="metronome1"; src="metronome1.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="metronome2"; src="metronome2.png" style: position=absolute; width="100%"; height="100%";>
+    </button>
+
+    <button class="btnIcon" id="muteAudioIcon" onclick=muteAutoPlay()>
+        <img id="audioIcon1"; src="audioIcon1.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="audioIcon2"; src="audioIcon2.png" style: position=absolute; width="100%"; height="100%";>
+    </button>
+    <!--
+    <button class="btnIcon"; id="stopReproductionIcon" onclick=pauseAutoPlay()>
+        <img id="stopIcon"; src="stopIcon.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="playIcon"; src="playIcon.png" style: position=absolute; width="100%"; height="100%";>
+    </button>-->
+
+    <button class="btnIcon"; id="toggleFretboardButton" onclick=toggleFretboard()>
+        <img id="guitarIcon1"; src="guitarIcon6.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="guitarIcon2"; src="guitarIcon2.png" style: position=absolute; width="100%"; height="100%";>
+    </button>
+
+
+
+    
+ <!--   <div id="containerBulletPoint">
+        <span class="bulletPointTitle">Select Triad:</span>
+            <div class="bulletPointChoiches">
+                <input type="radio" name="bulletPoint"> <span class="bulletPointDescription">MAJ TRIAD</span>
+            </div>
+            <div class="bulletPointChoiches">
+                <input type="radio" name="bulletPoint"> <span class="bulletPointDescription">MIN TRIAD</span>
+            </div>
+            <div class="bulletPointChoiches">
+                <input type="radio" name="bulletPoint"> <span class="bulletPointDescription">AUGMENTED TRIAD</span>
+            </div>
+            <div class="bulletPointChoiches">
+                <input type="radio" name="bulletPoint"> <span class="bulletPointDescription">DIMINISHED TRIAD</span>
+            </div>
+    </div>-->
+
+  
+
+    <div class="containerCheckbox1">
+        <ul>
+            <li>
+                <label class="containerCheckboxOption"style="display: inline-block;">&nbsp C
+                    <input type="checkbox" class="checkbox" name="17notes" value="0" checked>
+                    <span class="checkmark"></span>
+                    
+                  </label>
+
+                <label class="containerCheckboxOption" style="display: inline-block;">C♯
+                    <input type="checkbox" class="checkbox " name="17notes" value="1">
+                    <span class="checkmark "></span>
+                   </label>
+
+                <label class="containerCheckboxOption" style="display: inline-block;">Db
+                <input type="checkbox" class="checkbox" name="17notes" value="2">
+                <span class="checkmark"></span>
+               </label>
+
+            </li>
+
+            <li>
+                <label class="containerCheckboxOption">&nbsp D
+                 <input type="checkbox" class="checkbox" name="17notes" value="3" checked>
+                 <span class="checkmark"></span>
+                </label>
+
+                <label class="containerCheckboxOption" style="display: inline-block;">D♯
+                    <input type="checkbox" class="checkbox " name="17notes" value="4">
+                    <span class="checkmark "></span>
+                   </label>
+
+                <label class="containerCheckboxOption" style="display: inline-block;">Eb
+                <input type="checkbox" class="checkbox" name="17notes" value="5">
+                <span class="checkmark"></span>
+               </label>
+
+            </li>
+            <li>
+                <label class="containerCheckboxOption">&nbsp E
+                 <input type="checkbox" class="checkbox" name="17notes" value="6" checked>
+                 <span class="checkmark"></span>
+                </label>
+            </li>
+            <li>
+                <label class="containerCheckboxOption">&nbsp F
+                 <input type="checkbox" class="checkbox" name="17notes" value="7" checked>
+                 <span class="checkmark"></span>
+                </label>
+                <label class="containerCheckboxOption" style="display: inline-block;">F♯
+                <input type="checkbox" class="checkbox" name="17notes" value="8">
+                  <span class="checkmark"></span>
+                   </label>
+                <label class="containerCheckboxOption" style="display: inline-block;">Gb
+                    <input type="checkbox" class="checkbox" name="17notes" value="9">
+                    <span class="checkmark"></span>
+                   </label>
+            </li>
+            <li>
+                <label class="containerCheckboxOption">&nbsp G
+                 <input type="checkbox" class="checkbox" name="17notes" value="10" checked>
+                 <span class="checkmark"></span>
+                </label>
+                <label class="containerCheckboxOption" style="display: inline-block;">G♯
+                <input type="checkbox" class="checkbox" name="17notes" value="11">
+                  <span class="checkmark"></span>
+                   </label>
+                <label class="containerCheckboxOption" style="display: inline-block;">Ab
+                    <input type="checkbox" class="checkbox" name="17notes" value="12">
+                    <span class="checkmark"></span>
+                   </label>
+            </li>
+            <li>
+                <label class="containerCheckboxOption">&nbsp A
+                 <input type="checkbox" class="checkbox" name="17notes" value="13" checked>
+                 <span class="checkmark"></span>
+                </label>
+                <label class="containerCheckboxOption" style="display: inline-block;">A♯
+                <input type="checkbox" class="checkbox" name="17notes" value="14">
+                  <span class="checkmark"></span>
+                   </label>
+                <label class="containerCheckboxOption"style="display: inline-block;">Bb
+                    <input type="checkbox" class="checkbox" name="17notes" value="15">
+                    <span class="checkmark"></span>
+                   </label>
+            </li>
+            <li>
+                <label class="containerCheckboxOption">&nbsp B
+                 <input type="checkbox" class="checkbox" name="17notes" value="16" checked>
+                 <span class="checkmark"></span>
+                </label>
+            </li>
+        </ul>
+    
+        <div id="containerCheckbox2">
+            <ul>
+                <li>
+                    <label class="containerCheckboxOption">Maj
+                        <input type="checkbox" class="checkbox" name="4triads" value="0" checked>
+                        <span class="checkmark" style="margin-left: 32px;"></span>
+                    </label>
+                    <label class="containerCheckboxOption">Min
+                        <input type="checkbox" class="checkbox" name="4triads" value="1" checked>
+                        <span class="checkmark" style="margin-left: 32px;"></span>
+                    </label>
+                </li>
+                <li>
+                    <label class="containerCheckboxOption">Aug
+                        <input type="checkbox" class="checkbox" name="4triads" value="2">
+                        <span class="checkmark" style="margin-left: 32px;"></span>
+                    </label>
+                    <label class="containerCheckboxOption">Dim
+                        <input type="checkbox" class="checkbox" name="4triads" value="3">
+                        <span class="checkmark" style="margin-left: 32px;"></span>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="containerCheckbox3">
+            <ul>
+                <li>
+                    <label class="containerCheckboxOption">3rd
+                        <input type="checkbox" class="checkbox" name="4strings" value="0" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckboxOption">4th
+                        <input type="checkbox" class="checkbox" name="4strings" value="1" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+                <li>
+                    <label class="containerCheckboxOption">5th 
+                        <input type="checkbox" class="checkbox" name="4strings" value="2" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckboxOption">6th 
+                        <input type="checkbox" class="checkbox" name="4strings" value="3" checked>
+                        <span class="checkmark"></span>
+                </li>
+            </ul>
+            
+        </div>
+    
+        <div class="verticalLine"></div>
+        <div class="verticalLine" style="left:40vw"></div>
+    </div>
+
+
+
+    <div class="square purple" onclick=generateSoundOneTime()>Play the Triad</div>
+    
+    <div class="container-guitar">
+        <div class="fretboard fretboard-hidden">
+            <div class="string">
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret single-fretmark"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret single-fretmark"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret single-fretmark"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret single-fretmark"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret">
+                    <div class="double-fretmark"></div>
+                </div>
+            </div>
+            <div class="string">
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+            </div>
+            <div class="string">
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+            </div>
+            <div class="string">
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+            </div>
+            <div class="string">
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+            </div>
+            <div class="string">
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+                <div class="note-fret"></div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+<!--TODO ROBA CHE SERVE A FUNZIONARE I SAMPLES DI TONE.JS DI CHITARRA ACUSTICA, MA CHE ALTRIMENTI VA RIMOSSA-->
+    <script type="text/javascript" src="external-js/nprogress.js"></script>
+    <script type="text/javascript" src="external-js/NexusUI.js"></script>
+    <script type="text/javascript" src="external-js/Tone.js"></script>
+    <script type="text/javascript" src="Tonejs-Instruments.js"></script>
+    <script src="triads.js" ></script>
+
+</body>
+</html>
