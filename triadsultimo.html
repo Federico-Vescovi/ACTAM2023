@@ -27,38 +27,17 @@
             <p id="displaytriad" class="txt" style="top:158px; position:absolute; font-size: 125px;">Click</p>
             <p id="displaystring" class="txt" style="top:328px; position:absolute; font-size: 125px;">Below!</p>
         <!--</div>-->
-        <div class="txt darkpurple purpletext" id="triadGeneratorRectangle" style="padding-top: 25px; text-align: center;" onclick=pauseAutoPlay()>START!</div>
-        <div class="txt darkpurple purpletext" id="triadGeneratorRectangle2" style="padding-top: 25px;" onclick=displayNewTriad()>Click to generate a random triad!</div>
+        <div class="txt darkpurple purpletext" id="triadGeneratorRectangle" style="padding-top: 22px; text-align: center;" onclick=pauseAutoPlay()>START!</div>
+        <div class="txt darkpurple purpletext" id="triadGeneratorRectangle2" style="padding-top: 22px;" onclick=displayNewTriad()>Click to generate a random triad!</div>
     </div>
     
     <div class="containerSlider">
         <input type="range" min="20" max="300" value="120" class="slider" id="myRange" oninput=refreshSliderBox()>
     </div>
-    <div class="bpmBoxContainer" style="position:relative; left:32px; top:5vh; width:8vw">
-        <span id="bpmNumber" class="txt" style="position:relative; left:3px; top:-2px; font-weight:bold;">BPM: 120</span>
+    <div class="bpmBoxContainer" style="position:relative; left:30px; top:3vh; width:8vw">
+        <span id="bpmNumber" class="txt" style="position:relative; left:3px; top:2px; font-weight:bold; display: inline;">BPM: 120</span>
     </div>
-    <button class="btnIcon" id="metronomeIcon" onclick=muteMetronome()>
-        <img id="metronome1"; src="metronome1.png" style: position=absolute; width="100%"; height="100%";>
-        <img id="metronome2"; src="metronome2.png" style: position=absolute; width="100%"; height="100%";>
-    </button>
-
-    <button class="btnIcon" id="muteAudioIcon" onclick=muteAutoPlay()>
-        <img id="audioIcon1"; src="audioIcon1.png" style: position=absolute; width="100%"; height="100%";>
-        <img id="audioIcon2"; src="audioIcon2.png" style: position=absolute; width="100%"; height="100%";>
-    </button>
-
-
-    <button class="btnIcon"; id="toggleFretboardButton" onclick=toggleFretboard()>
-        <img id="guitarIcon1"; src="guitarIcon6.png" style: position=absolute; width="100%"; height="100%";>
-        <img id="guitarIcon2"; src="guitarIcon2.png" style: position=absolute; width="100%"; height="100%";>
-    </button>
-
-    <button class="btnIcon"; id="practiceReproductionIcon" onclick=generateSoundPractice()>
-        <img id="playIcon"; src="playIcon.png" style: position=absolute; width="100%"; height="100%";>
-        <img id="stopIcon"; src="stopIcon.png" style: position=absolute;  width="100%"; height="100%";>
-    </button>
-    
-    
+   
     
     
  <!--   <div id="containerBulletPoint">
@@ -227,7 +206,28 @@
         <div class="verticalLine" style="left:40vw"></div>
     </div>
 
+    <button class="btnIcon" id="metronomeIcon" onclick=muteMetronome()>
+        <img id="metronome1"; src="metronome1.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="metronome2"; src="metronome2.png" style: position=absolute; width="100%"; height="100%";>
+    </button>
 
+    <button class="btnIcon" id="muteAudioIcon" onclick=muteAutoPlay()>
+        <img id="audioIcon1"; src="audioIcon1.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="audioIcon2"; src="audioIcon2.png" style: position=absolute; width="100%"; height="100%";>
+    </button>
+
+
+    <button class="btnIcon"; id="toggleFretboardButton" onclick=toggleFretboard()>
+        <img id="guitarIcon1"; src="guitarIcon6.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="guitarIcon2"; src="guitarIcon2.png" style: position=absolute; width="100%"; height="100%";>
+    </button>
+
+    <button class="btnIcon"; id="practiceReproductionIcon" onclick=generateSoundPractice()>
+        <img id="playIcon"; src="playIcon.png" style: position=absolute; width="100%"; height="100%";>
+        <img id="stopIcon"; src="stopIcon.png" style: position=absolute;  width="100%"; height="100%";>
+    </button>
+    
+    
 
     <div id="emptyContainer"></div>
     

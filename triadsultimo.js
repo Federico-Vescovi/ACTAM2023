@@ -989,22 +989,49 @@ function pauseAutoPlay(){
 
 function toggleFretboard() {
     const fretboard = document.querySelector('.fretboard');
+    const btnIcons = document.querySelectorAll('.btnIcon');
+  
     fretboard.classList.toggle('fretboard-visible');
-
-
-
-    if(fretboardDisabled==0){
-        fretboardDisabled=1;
+  
+    if (fretboard.classList.contains('fretboard-visible')) {
+      let leftPosition = 10; // Adjust the initial left position
+      btnIcons.forEach((btnIcon) => {
         document.getElementById("guitarIcon1").style.visibility="hidden";
-        document.getElementById("guitarIcon2").style.visibility="visible";}
-    else {fretboardDisabled=0;
+        document.getElementById("guitarIcon2").style.visibility="visible";
+        btnIcon.style.position = 'fixed';
+        btnIcon.style.top = '410px';
+        btnIcon.style.left = `${leftPosition}px`;
+        leftPosition += 52; // Adjust the spacing between buttons 
+      });
+    } else {
+      btnIcons.forEach((btnIcon) => {
+        btnIcon.style.position = 'relative';
+        btnIcon.style.left = '';
+        //btnIcon.style.top = '50vh';
         document.getElementById("guitarIcon1").style.visibility="visible";
         document.getElementById("guitarIcon2").style.visibility="hidden";
-    };
-    
-    //toggleButton.style.display = 'none'
-  };
-  
+
+      });
+
+    // Adjust the position of specific buttons when fretboard is hidden
+    document.getElementById("metronomeIcon").style.position = 'fixed';
+    document.getElementById("metronomeIcon").style.top = '93.3vh';
+    document.getElementById("metronomeIcon").style.left = '10px';
+
+    document.getElementById("muteAudioIcon").style.position = 'fixed';
+    document.getElementById("muteAudioIcon").style.top = '93.3vh';
+    document.getElementById("muteAudioIcon").style.left = '8.8vh';
+
+    document.getElementById("toggleFretboardButton").style.position = 'fixed';
+    document.getElementById("toggleFretboardButton").style.top = '93.3vh';
+    document.getElementById("toggleFretboardButton").style.left = '16vh';
+
+
+    document.getElementById("practiceReproductionIcon").style.position = 'fixed';
+    document.getElementById("practiceReproductionIcon").style.top = '93.3vh';
+    document.getElementById("practiceReproductionIcon").style.left = '23.3vh';
+    }
+  }
   
   
 //GUITARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
