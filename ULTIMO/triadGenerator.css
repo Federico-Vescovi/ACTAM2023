@@ -1,0 +1,722 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html{
+  scroll-behavior: smooth;
+}
+h1{
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding: 10px;
+}
+
+ul{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+li {
+  margin: 5px;
+  display: table-row;
+  list-style: none;
+}
+
+li * {
+  display: table-cell;
+  padding: 0.5em;
+}
+
+
+
+
+/*CONTAINERSSSSSSSSS*/
+.containerNoteGenerator{
+  height: 67vh;
+  display: flex;
+  justify-content: center;
+}
+
+#containerModeButtons{
+  display: flex;
+  justify-content: center;
+}
+
+.containerCheckbox1{
+  left:20vw;
+  top: 11vh;
+  border: 1px solid black;
+  height: 38vh;
+  width: 60vw;
+  position: relative;
+  border-radius: 5px;
+  padding-top: 5vh;
+
+}
+
+#containerCheckbox2{
+  left:22.5vw;
+  top:0vh;
+  height: 35vh;
+  width: 20vw;
+  position: absolute;
+  padding-top: 5vh;
+}
+
+#containerCheckbox3{
+  left:42.5vw;
+  top: 0vh;
+  height: 35vh;
+  width: 20vw;
+  position: absolute;
+  padding-top: 5vh;
+}
+
+.verticalLine{
+  left:20vw;
+  top:5vh;
+  border: 1px solid black;
+  height: 25vh;
+  width: 0vw;
+  position: absolute;
+  padding-top: 5px;
+}
+
+
+.container-guitar{
+  top: 50px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#emptyContainer{
+  height:59vh;
+  width:1px;
+}
+
+
+  /*BUTTON*/
+
+
+
+
+  .form-box{
+    background: #f6ecfc;
+    height: 50px;
+    position: relative;
+    padding-top: 10px;
+
+  }
+  .button-box {
+	width: 700px;
+	margin: 35px auto;
+	position: relative;
+	border-radius: 30px;
+	background: #cdafde;
+  margin-top: 1px;
+}
+
+.toggle-btn {
+	padding: 30px 40px;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+  color:#f6ecfc;
+	outline: none;
+	position: relative;
+	text-align: center;
+}
+
+#btn {
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 350px;
+	height: 100%;
+	background: #440d97;
+	border-radius: 30px;
+	transition: .5s;
+}
+  
+  
+  
+
+
+
+
+
+
+
+
+/*MODE BUTTONSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
+.modeButtons{
+  text-decoration:none;
+  padding: 20px 50px;
+  font-size:large;
+  position: relative;
+  margin: 20px 300px;
+  cursor: pointer;
+}
+
+
+
+/*BUTTONS WITH ICON*/
+
+.btnIcon{
+  position: relative;
+  width:3vw;
+  height:3vw;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.5s ease, bottom 0.5s ease, left 0.5s ease;
+  transform: translateY(0);
+}
+
+
+
+
+#metronomeIcon{
+ position:fixed;
+ bottom:0vh;
+ left:83vw;
+}
+
+
+#muteAudioIcon{
+  position:fixed;
+  bottom:0vh;
+  left:87vw;
+ }
+
+ 
+#toggleFretboardButton{
+  position:fixed;
+  bottom:0vh;
+  left:91vw;
+ }
+
+ #practiceReproductionIcon{
+  position:fixed;
+  bottom:0vh;
+  left:95vw;
+  visibility:hidden;
+
+ }
+
+#metronome2{
+  position: absolute;
+  left:0px;
+  visibility:hidden;
+}
+
+#audioIcon2{
+  position: absolute;
+  left:0px;
+  visibility:hidden;
+}
+
+
+
+#guitarIcon2{
+  position: absolute;
+  left:0px;
+  visibility:hidden;
+}
+
+/*
+#practiceReproductionIcon{
+  position: relative;
+  top:10vh;
+  left:1vw;
+  display: inline-block;
+  cursor: pointer;
+  visibility:hidden;
+
+}
+
+*/
+
+#stopIcon{
+  position: absolute;
+  left:0px;
+  visibility:hidden;
+}
+
+
+
+
+
+
+
+
+
+/*BEGINNING OF CHECKBOXES*/
+
+/* Style the label containing the input element */
+.containerCheckboxOption {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  margin-left: 20px;
+  height: 20px;
+  /*width: calc((100% - 60px) / 3);*/
+  width: 60px;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containerCheckboxOption input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 5px;
+  margin-left: 24px;
+  margin-bottom: 150px;
+  height: 20px;
+  width: 20px;
+  background-color: #EAF0F6;
+  border: 2px solid #440d97;
+  border-radius: 5px;
+}
+
+/* When the checkbox is checked, add a navy background */
+.containerCheckboxOption input:checked ~ .checkmark {
+  background-color: #440d97;
+}
+
+/* Create the checkmark (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.containerCheckboxOption input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark */
+.containerCheckboxOption .checkmark:after {
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+
+
+/*GUITAR*/
+
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
+
+:root {
+  --fretboard-height: 300;
+  --number-of-strings: 6;
+  --string-height: 10;
+  --half-string-height: calc(var(--string-height) / 2);
+  --string-top-position: calc(var(--fretboard-height) / var(--number-of-strings) / 2 - var(--half-string-height));
+  --double-fretmark-position-1: calc(var(--fretboard-height) * 0.30);
+  --double-fretmark-position-2: calc(var(--fretboard-height) * 0.58);
+  --noteDotOpacity: 1;
+}
+
+
+.fretboard {
+  display: flex;
+  flex-direction: column;
+  background: #686768;
+  width: 100%;
+  min-width: 1500px;
+  height: calc(var(--fretboard-height) * 0.85px);
+  margin-top: 50px;
+  transition: transform 0.5s ease;
+  transform: translateY(100%);
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  border: 0.2px solid transparent; 
+  border-radius: 10px; 
+  overflow: hidden; 
+
+}
+.fretboard-hidden {
+  transform: translateY(100%);
+}
+.fretboard-visible {
+  transform: translateY(0);
+}
+.string {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+.string:before {
+    content: '';
+    width: 100%;
+    height: calc(var(--string-height) * 1px);
+    background: linear-gradient(#eee, #999);
+    box-shadow: 76px 3px 10px #686768;
+    z-index: 1;
+    position: absolute;
+    top: 22px;
+    top: calc(var(--string-top-position) * 1px);
+}
+.note-fret {
+    display: flex;
+    flex: 1;
+    border-right: 10px solid;
+    border-image: linear-gradient(to left, #777, #bbb, #777) 1 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.note-fret:first-child {
+    background: #434143;
+    min-width: 76px;
+    border-right: 12px solid;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+}
+
+.single-fretmark:after, .double-fretmark:before, .double-fretmark:after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #aaa;
+}
+
+.single-fretmark:after {
+  top: calc(var(--fretboard-height) / 2 * 0.88px);
+  transform: translate(0, -50%);
+}
+
+.double-fretmark:before {
+  top: calc(var(--double-fretmark-position-1) * 1px);
+  transform: translate(-65%, -50%);
+}
+.double-fretmark:after {
+  top: calc(var(--double-fretmark-position-2) * 1px);
+  transform: translate(-65%, -50%);
+}
+
+.dot {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: black;
+  z-index: 2;
+  color: #eee;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f6ecfc;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*text, colors and generic shapessssssssssssssssssssssssssssssssss*/
+.txt{
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; 
+  padding: 20px 0;
+  font-family:'Tahoma', sans-serif;
+  text-align: center;
+  color:black;
+}
+.lefttxt{
+  font-size: 5vh; 
+  padding: 5px 0;
+  padding-left: 7px;
+  font-family:'Tahoma', sans-serif;
+  color:#FEFAFE;
+  text-align: left;
+  font-weight: 200;
+}
+
+#triadGeneratorRectangle{
+  position:absolute;
+  display: inline-block;
+  top: 55vh;
+  height: 11vh;
+  margin: 70px;
+  width: 30%;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#triadGeneratorRectangle2{
+  position:absolute;
+  display: none;
+  top: 55vh;
+  height: 11vh;
+  margin: 70px;
+  width: 30%;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.playPractice{
+  position:inline-block;
+  display: none;
+  top: 58vh;
+  height: 11vh;
+  margin: 70px;
+  width: 30%;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.red{
+  background-color: #e60a0a;
+}
+
+.inline{
+  display: inline-block;
+}
+
+.yellow{
+  background-color: #f1e61a;
+}
+
+.green{
+  background-color: #0ae62f;
+}
+
+.darkpurple{
+  background-color: #440d97;
+}
+
+.purple{
+  background-color: #f6ecfc;
+}/*bianco violettato: #FEFAFE*/ 
+
+.lightblue{
+  background-color: #3696b6;
+}
+
+.darkpurpletext{
+  color:#6E29D6;
+}
+.purpletext{
+  color:#FEFAFE;
+}
+
+
+
+
+
+
+/* SLIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER*/
+.containerSlider{
+  position: relative;
+  top:8vh;
+  left:15vw;
+  width:80%;
+} 
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  left:5vw;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none; /* Remove outline */
+  opacity: 0.75;
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1; /* Fullly visible when the mouse is over the slider */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #440d97;
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px;
+  border-radius: 50%;
+  background: #440d97;
+  cursor: pointer; /* Cursor on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*BEGINNING OF BULLET POINT*/
+/*
+#containerBulletPoint{
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 140px;
+}
+
+.bulletPointTitle{
+  display: flex;
+  font-size: 25px;
+  margin-bottom: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #C289FA;
+}
+
+.bulletPointDescription{
+  margin-left: 50px;
+  font-size: 17px;
+}
+
+.bulletPointChoiches{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10px;
+}
+
+input[type="radio"], .bulletPointDescription{
+  display: inline;
+}
+
+input[type="radio"]{
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="radio"]::before{
+  display: inline;
+  content: "";
+  width: 26px;
+  height: 26px;
+  background-color: black;
+  position: absolute;
+  top: calc(50% - 13px);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="radio"]::after{
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: wheat;
+  position: absolute;
+  top: calc(50% - 8px);
+  border-radius: 50%;
+  cursor: pointer;
+  left: 5px;
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
+  
+}
+
+input[type="radio"]:checked::after{
+  transform: scale(1);
+}
+*/
+/*END OF BULLET POINT*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.rounded{
+  position: relative;
+  display: flex;
+  height: 20vw;
+  width: 20vw;
+  border-radius: 50%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+.dashed{
+  background:linear-gradient(to left top ,#EBD0FA, #FEFAFE);
+}*/
